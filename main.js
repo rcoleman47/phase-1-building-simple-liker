@@ -3,10 +3,30 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+document.getElementById('modal').className = 'hidden'
 
+const likePost  = ()=>{
+  const like = document.querySelectorAll('.like-glyph');
+  like.forEach(like => {
+    like.addEventListener('click', () =>{
+    if(mimicServerCall().then((res)=>res) === "Random server error. Try again."){
+        document.getElementById('modal').className=""
+        setTimeout(document.getElementById('modal').className = 'hidden', 3000)
+    }else
+      like.innerText= FULL_HEART
+      like.className = 'activated-heart'
+    
+  })
+  })
+}
+const unlikePost =()=>{
+  if(document.getElementsByClassName('activated heart')){
 
+  }
+}
 
-
+mimicServerCall().then(res=>console.log(res))
+ 
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
 //------------------------------------------------------------------------------
@@ -23,3 +43,6 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
+//function calls
+likePost()
